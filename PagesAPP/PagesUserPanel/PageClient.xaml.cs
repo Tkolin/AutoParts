@@ -46,7 +46,15 @@ namespace AutoParts.PagesAPP.PagesUserPanel
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            autoPartsBDEntities.SaveChanges();
+            try
+            {
+                autoPartsBDEntities.SaveChanges();
+                MessageBox.Show("Успешно");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             DataGridUpdate();
         }
 
@@ -66,14 +74,21 @@ namespace AutoParts.PagesAPP.PagesUserPanel
         {
             if (dataGrid.SelectedItems.Count > 0)
             {
-                for (int i = 0; i < dataGrid.SelectedItems.Count; i++)
+                try
                 {
-                    Клиент клиент = dataGrid.SelectedItems[i] as Клиент;
-                    autoPartsBDEntities.Клиент.Remove(клиент);
+                    for (int i = 0; i < dataGrid.SelectedItems.Count; i++)
+                    {
+                        Клиент клиент = dataGrid.SelectedItems[i] as Клиент;
+                        autoPartsBDEntities.Клиент.Remove(клиент);
+                    }
+                    MessageBox.Show("Пользователь удален!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    autoPartsBDEntities.SaveChanges();
+                    DataGridUpdate();
                 }
-                MessageBox.Show("Пользователь удален!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
-                autoPartsBDEntities.SaveChanges();
-                DataGridUpdate();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
             {
@@ -83,14 +98,15 @@ namespace AutoParts.PagesAPP.PagesUserPanel
 
         private void red_Click(object sender, RoutedEventArgs e)
         {
-            dataGrid.ItemsSource = autoPartsBDEntities.Клиент.OrderBy(x => x.ФИО).ToList();
+            TXBsearch.Text = null;
+            DataGridUpdate();
         }
         private void TXBsearch_TextChanged(object sender, TextChangedEventArgs e)
         {
             if (TXBsearch.Text.Length > 0)
             {
                 string str = TXBsearch.Text;
-                dataGrid.ItemsSource = autoPartsBDEntities.Клиент.Where(x => x.ФИО.StartsWith(str)).ToList();
+                dataGrid.ItemsSource = autoPartsBDEntities.Клиент.Where(x => x.ФИО.ToLower().Contains(str.ToLower())).ToList();
             }
         }
     }

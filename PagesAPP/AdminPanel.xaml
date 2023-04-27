@@ -15,11 +15,12 @@
         </StackPanel>
         <Grid Background="#FF2E1E6B" DockPanel.Dock="Left" Width="156">
             <WrapPanel  />
-            <Button Content="Сотрудник"  HorizontalAlignment="Center" Margin="18,29,18,326" Width="120" FontSize="12" Height="50" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click_4"  />
-            <Button Content="Клиент"  HorizontalAlignment="Left" Margin="18,94,0,261" Width="120" Height="50" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click"  />
-            <Button Content="Склад" HorizontalAlignment="Center" Margin="18,160,18,197" Width="120" Height="50" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD"  Click="Button_Click_1"/>
-            <Button Content="Товар" HorizontalAlignment="Center" Margin="18,230,18,129" Width="120" Height="50" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click_2" />
-            <Button Content="Выход" HorizontalAlignment="Center" Margin="18,303,18,52" Width="120" Height="50" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click_3" />
+            <Button Content="Сотрудники"  HorizontalAlignment="Center" Margin="0,10,0,365" Width="120" FontSize="12" Height="30" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click_4"  />
+            <Button Content="Клиенты"  HorizontalAlignment="Center" Margin="0,57,0,318" Width="120" Height="30" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click"  />
+            <Button Content="Склады" HorizontalAlignment="Center" Margin="0,110,0,265" Width="120" Height="30" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD"  Click="Button_Click_1"/>
+            <Button Content="Товары" HorizontalAlignment="Center" Margin="0,163,0,212" Width="120" Height="30" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click_2" />
+            <Button Content="Товарооборот" HorizontalAlignment="Center" Margin="0,218,0,157" Width="120" Height="30" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click_5" />
+            <Button Content="Выход" HorizontalAlignment="Center" Margin="0,314,0,61" Width="120" FontSize="12" Height="30" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click_3" />
 
         </Grid>
 

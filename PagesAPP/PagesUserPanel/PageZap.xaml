@@ -20,9 +20,12 @@
                 <Button BorderThickness="0" Content="Добавить" Margin="15 5 15 0" Height="25" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF2E1E6B" x:Name="AddEmployee" Click="AddEmployee_Click" />
                 <Button BorderThickness="0" Content="Удалить" Margin="15 5 15 0" Height="25" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF2E1E6B" x:Name="del" Click="del_Click"  />
                 <Button BorderThickness="0" Content="Редактировать" Margin="15 5 15 0" Height="25" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF2E1E6B" x:Name="redak" Click="redak_Click"  />
-                <Button BorderThickness="0" Content="Сортировать по названию" Margin="15 5 15 0" Height="25" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF2E1E6B" x:Name="red" Click="red_Click"  />
-                <Label Content="Поиск" Margin="15 0 15 0" Foreground="White" FontSize="15" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+                <Label Content="Поиск по названию:" Margin="15 0 15 0" Foreground="White" FontSize="15" FontWeight="Bold" HorizontalContentAlignment="Center"/>
                 <TextBox Margin="2" FontSize="16" Height="25" Width="145" Background="White" Name="TXBsearch" Grid.Column="1" TextChanged="TXBsearch_TextChanged"/>
+                <Label Content="Марка:" Margin="15 0 15 0" Foreground="White" FontSize="15" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+                <ComboBox Height="25" Width="145"  FontSize="15" x:Name="CBsearch" SelectionChanged="CBsearch_SelectionChanged"/>
+                <Button BorderThickness="0" Content="Сбросить" Margin="15 5 15 0" Height="25" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF2E1E6B" x:Name="red" Click="red_Click"  />
+
 
             </StackPanel>
 
@@ -34,7 +37,7 @@
                 <DataGridTextColumn Header="Марка авто" Binding="{Binding Марка_авто}" Width="*" />
                 <DataGridTextColumn Header="Модель авто" Binding="{Binding Модель_авто}" Width="*" />
                 <DataGridTextColumn Header="Производитель" Binding="{Binding Производитель}" Width="*" />
-                <DataGridTextColumn Header="кол-во" Binding="{Binding кол_во}" Width="*" />
+                <DataGridTextColumn Header="Остаток" Binding="{Binding кол_во}" Width="*" IsReadOnly="True"/>
                 <DataGridTextColumn Header="Цена" Binding="{Binding цена}" Width="*" />
                 <DataGridTextColumn Header="Склад" Binding="{Binding Склад.Наименование}" Width="*" />
 

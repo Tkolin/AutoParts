@@ -10,19 +10,13 @@
 namespace AutoParts.Data
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Заказ
+    public partial class sp_helpdiagrams_Result
     {
-        public int Id { get; set; }
-        public Nullable<int> Id_Клиент { get; set; }
-        public int Id_Сотрудник { get; set; }
-        public int Id_Запчасть { get; set; }
-        public Nullable<int> кол_во { get; set; }
-        public Nullable<System.DateTime> Дата_заказа { get; set; }
-    
-        public virtual Запчасть Запчасть { get; set; }
-        public virtual Клиент Клиент { get; set; }
-        public virtual Сотрудник Сотрудник { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

@@ -50,6 +50,9 @@ namespace AutoParts.PagesAPP
             frame.NavigationService.Navigate(new Uri("../PagesAPP/PagesUserPanel/PageEmployee.xaml", UriKind.Relative));
         }
 
-
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+            frame.NavigationService.Navigate(new Uri("../PagesAPP/PagesUserPanel/PageZakaz.xaml", UriKind.Relative));
+        }
     }
 }

@@ -16,9 +16,10 @@
                 <Button BorderThickness="0" Content="Сохранить" Margin="15 5 15 0" Height="25" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF2E1E6B" x:Name="Save" Click="Save_Click"   />
                 <Button BorderThickness="0" Content="Добавить" Margin="15 5 15 0" Height="25" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF2E1E6B" x:Name="AddEmployee" Click="AddEmployee_Click" />
                 <Button BorderThickness="0" Content="Удалить" Margin="15 5 15 0" Height="25" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF2E1E6B" x:Name="Del" Click="Del_Click"  />
-                <Button BorderThickness="0" Content="Сортировать по ФИО" Margin="15 5 15 0" Height="25" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF2E1E6B" x:Name="red" Click="red_Click"  />
+
                 <Label Content="Поиск" Margin="15 0 15 0" Foreground="White" FontSize="15" FontWeight="Bold" HorizontalContentAlignment="Center"/>
                 <TextBox Margin="2" FontSize="16" Height="25" Width="145" Background="White" Name="TXBsearch" Grid.Column="1" TextChanged="TXBsearch_TextChanged"/>
+                <Button BorderThickness="0" Content="Сбросить" Margin="15 5 15 0" Height="25" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF2E1E6B" x:Name="red" Click="red_Click"  />
 
 
 
@@ -27,7 +28,7 @@
         </Grid>
         <DataGrid x:Name="dataGrid" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="0.4*" />
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="0.4*"/>
                 <DataGridTextColumn Header="ФИО" Binding="{Binding ФИО}" Width="*" />
                 <DataGridTextColumn Header="Телефон" Binding="{Binding Телефон}" Width="*" />
                 <DataGridTextColumn Header="Дата" Binding="{Binding Дата}" Width="*" />
@@ -39,7 +40,7 @@
                             <Button Background="Azure"
                                     Name="BthSelectStudent"
                                     Click="BthSelectStudent_Click_1"
-                                    Content="Заказ"
+                                    Content="Создать заказ"
                                     />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

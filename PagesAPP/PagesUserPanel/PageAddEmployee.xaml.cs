@@ -32,11 +32,12 @@ namespace AutoParts.PagesAPP.PagesUserPanel
 
         private void BTNadduser_Click(object sender, RoutedEventArgs e)
         {
+            try { 
             Сотрудник сотрудник = new Сотрудник()
             {
                 ФИО = N1.Text,
                 Телефон = N2.Text,
-                Дата = N3.Text,
+                Дата = N3.SelectedDate.Value,
                 Паспорт = N4.Text,
                 Id_Пол = int.Parse(N5.SelectedValue.ToString()),
 
@@ -44,11 +45,16 @@ namespace AutoParts.PagesAPP.PagesUserPanel
             autoPartsBDEntities.Сотрудник.Add(сотрудник);
             autoPartsBDEntities.SaveChanges();
             MessageBox.Show("Успешно");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void BTNbackus_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new PageEmployee());
+            this.NavigationService.GoBack();
         }
     }
 }

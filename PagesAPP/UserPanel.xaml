@@ -15,10 +15,12 @@
         </StackPanel>
         <Grid Background="#FF2E1E6B" DockPanel.Dock="Left">
             <WrapPanel  />
-            <Button Content="Сотрудник" Height="28" HorizontalAlignment="Center" Margin="5 10 5 350" Width="120" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click_4"  />
-            <Button Content="Клиент" Height="28" HorizontalAlignment="Left" Margin="5 10 5 270" Width="120" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click"  />
-            <Button Content="Склад" Height="28" HorizontalAlignment="Center" Margin="5 10 5 190" Width="120" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD"  Click="Button_Click_1"/>
-            <Button Content="Товар" Height="28" HorizontalAlignment="Center" Margin="5 10 5 100" Width="120" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click_2" />
+            <Button Content="Сотрудники" Height="28" HorizontalAlignment="Center" Margin="5 10 5 350" Width="120" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click_4"  />
+            <Button Content="Клиенты" Height="28" HorizontalAlignment="Left" Margin="5 10 5 270" Width="120" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click"  />
+            <Button Content="Склады" Height="28" HorizontalAlignment="Center" Margin="5 10 5 190" Width="120" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD"  Click="Button_Click_1"/>
+            <Button Content="Товары" Height="28" HorizontalAlignment="Center" Margin="5 10 5 100" Width="120" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click_2" />
+         
+
             <Button Content="Выход" Height="28" HorizontalAlignment="Center" Margin="5 10 5 10" Width="120" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click_3" />
 
         </Grid>

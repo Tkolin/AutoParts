@@ -9,32 +9,30 @@
       Title="PageZakaz">
 
     <DockPanel Background="#FF5741AD">
-        <WrapPanel DockPanel.Dock="Top" Background="#FF5741AD">
-            
-            <Label Content="Заказ:" FontSize="15" FontWeight="Bold"  VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
-            <Label Content="Сотрудник:" FontSize="15"   VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
-            <ComboBox BorderThickness="0" VerticalAlignment="Center" Width="120" x:Name="N1"/>
-            <Label Content="Запчасть:" FontSize="15"   VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
-            <ComboBox BorderThickness="0" VerticalAlignment="Center" Width="120" x:Name="N2"/>
-            <Button BorderThickness="0" Margin="15" Content="Добавить" Width="90" Height="30"  FontSize="15" FontWeight="Bold"  Foreground="White" Background="#FF2E1E6B" Click="Button_Click"   />
+        <Grid DockPanel.Dock="Right" >
+            <StackPanel Background="#FF5741AD">
+                <Label Content="Инструменты" Margin="15 0 15 0" Foreground="White" FontSize="20" FontWeight="Bold" HorizontalContentAlignment="Center"/>
+                <Button BorderThickness="0" Content="Обновить" Margin="15 5 15 0" Height="25" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF2E1E6B" x:Name="RefreshDG" Click="RefreshDG_Click" />
+                <Button BorderThickness="0" Content="Сохранить" Margin="15 5 15 0" Height="25" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF2E1E6B" x:Name="Save" Click="Save_Click"   />
 
-        </WrapPanel>
-        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False">
+                <Button BorderThickness="0" Content="Добавить" Margin="15 5 15 0" Height="25" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF2E1E6B" x:Name="AddEmployee" Click="Add_Click" />
+                <Button BorderThickness="0" Content="Сформировать отчёт" Margin="15 5 15 0" Height="25" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF2E1E6B" x:Name="Otchet" Click="Otchet_Click" />
+
+
+
+                <Button BorderThickness="0" Content="Удалить" Margin="15 5 15 0" Height="25" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF2E1E6B" x:Name="del" Click="del_Click"  />
+            </StackPanel>
+
+        </Grid>
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" SelectionMode="Single" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />
+                <DataGridTextColumn Header="Номер" Binding="{Binding Id}" Width="*" />
+                <DataGridTextColumn Header="Дата заказа" Binding="{Binding Дата_заказа}" Width="*" />
                 <DataGridTextColumn Header="Запчасть" Binding="{Binding Запчасть.Наименование}" Width="*" />
                 <DataGridTextColumn Header="Сотрудник" Binding="{Binding Сотрудник.ФИО}" Width="*" />
-                <DataGridTemplateColumn Header="Удалить"  Width="*">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Button Background="Azure"
-                                    Name="BthSelectStudent"
-                                    Click="BthSelectStudent_Click_1"
-                                    Content="Удалить"
-                                    />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Клиент" Binding="{Binding Клиент.ФИО}" Width="*" x:Name="DGClient" Visibility="Collapsed" />
+                <DataGridTextColumn Header="Кол-во" Binding="{Binding кол_во}" Width="*" IsReadOnly="True" />
+                <DataGridTextColumn Header="Цена" Binding="{Binding Запчасть.цена}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
 

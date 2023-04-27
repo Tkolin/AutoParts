@@ -25,8 +25,8 @@ namespace AutoParts.PagesAPP.PagesUserPanel
         public PageZap()
         {
             InitializeComponent();
-           
 
+            CBoxMarkaUpdate();
 
             DataGridUpdate();
         }
@@ -35,7 +35,13 @@ namespace AutoParts.PagesAPP.PagesUserPanel
         {
             dataGrid.ItemsSource = autoPartsBDEntities.Запчасть.ToList();
         }
-
+        private void CBoxMarkaUpdate()
+        {
+            CBsearch.SelectedValuePath = "Марка_авто";
+            CBsearch.DisplayMemberPath = "Марка_авто";
+            CBsearch.ItemsSource = autoPartsBDEntities.Запчасть.GroupBy(p=>p.Марка_авто).ToList();
+        
+        }
         private void RefreshDG_Click(object sender, RoutedEventArgs e)
         {
             DataGridUpdate();
@@ -45,7 +51,16 @@ namespace AutoParts.PagesAPP.PagesUserPanel
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            autoPartsBDEntities.SaveChanges();
+            try
+            {
+                autoPartsBDEntities.SaveChanges();
+      
+                MessageBox.Show("Успешно");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             DataGridUpdate();
         }
 
@@ -58,41 +73,70 @@ namespace AutoParts.PagesAPP.PagesUserPanel
         {
             if (dataGrid.SelectedItems.Count > 0)
             {
-                for (int i = 0; i < dataGrid.SelectedItems.Count; i++)
+                try
                 {
-                    Запчасть запчасть = dataGrid.SelectedItems[i] as Запчасть;
-                    autoPartsBDEntities.Запчасть.Remove(запчасть);
+                    for (int i = 0; i < dataGrid.SelectedItems.Count; i++)
+                    {
+                        Запчасть запчасть = dataGrid.SelectedItems[i] as Запчасть;
+                        autoPartsBDEntities.Запчасть.Remove(запчасть);
+                    }
+                    MessageBox.Show("Деталь удалена!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    autoPartsBDEntities.SaveChanges();
+                    DataGridUpdate();
                 }
-                MessageBox.Show("Деталь удалена!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
-                autoPartsBDEntities.SaveChanges();
-                DataGridUpdate();
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
             else
             {
                 MessageBox.Show("В таблице нет данных", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        private void TXBsearch_TextChanged(object sender, TextChangedEventArgs e)
+        private void DataGridFilter()
         {
+            List<Запчасть> itemList = autoPartsBDEntities.Запчасть.ToList();
+
             if (TXBsearch.Text.Length > 0)
             {
                 string str = TXBsearch.Text;
-                dataGrid.ItemsSource = autoPartsBDEntities.Запчасть.Where(x => x.Наименование.StartsWith(str)).ToList();
+                itemList = itemList.Where(x => 
+                x.Наименование.ToLower().Contains(str.ToLower()) ||
+                x.Производитель.ToLower().Contains(str.ToLower()) ||
+                x.Модель_авто.ToLower().Contains(str.ToLower())
+                ).ToList();
             }
+            if(CBsearch.SelectedItem != null)
+            {
+                string str = CBsearch.Text;
+                itemList = itemList.Where(x =>
+                x.Марка_авто.ToLower().Contains(str.ToLower())
+                ).ToList();
+            }
+            dataGrid.ItemsSource = itemList;
         }
+        private void TXBsearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            DataGridFilter();
 
+        }
+        private void CBsearch_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGridFilter();
+        }
         private void red_Click(object sender, RoutedEventArgs e)
         {
-            dataGrid.ItemsSource = autoPartsBDEntities.Запчасть.OrderBy(x => x.Наименование).ToList();
+            TXBsearch.Text = null;
+            CBsearch.SelectedItem = null;
+            DataGridUpdate();
         }
 
         private void redak_Click(object sender, RoutedEventArgs e)
         {
             Запчасть p = dataGrid.SelectedItem as Запчасть;
-            this.NavigationService.Navigate(new EditZap());
-            
-            
+            this.NavigationService.Navigate(new PageAddZakaz());
         }
+
     }
 }

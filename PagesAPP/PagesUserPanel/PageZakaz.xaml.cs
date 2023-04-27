@@ -1,4 +1,5 @@
 ﻿using AutoParts.Data;
+using Microsoft.Office.Interop.Excel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,7 @@ namespace AutoParts.PagesAPP.PagesUserPanel
     /// <summary>
     /// Логика взаимодействия для PageZakaz.xaml
     /// </summary>
-    public partial class PageZakaz : Page
+    public partial class PageZakaz : System.Windows.Controls.Page
     {
         AutoPartsBDEntities autoPartsBDEntities = new AutoPartsBDEntities();
         Клиент pageClient;
@@ -27,47 +28,150 @@ namespace AutoParts.PagesAPP.PagesUserPanel
         {
             InitializeComponent();
             pageClient = клиент;
-            N2.ItemsSource = autoPartsBDEntities.Запчасть.ToList();
-            N2.DisplayMemberPath = "Наименование";
-            N2.SelectedValuePath = "Id";
-            N1.ItemsSource = autoPartsBDEntities.Сотрудник.ToList();
-            N1.DisplayMemberPath = "ФИО";
-            N1.SelectedValuePath = "Id";
-
+            DGClient.Visibility = Visibility.Collapsed;
             DataGridUpdate();
         }
-
+        public PageZakaz()
+        {
+            InitializeComponent();
+            DGClient.Visibility = Visibility.Visible;
+            DataGridUpdate();
+        }
         private void DataGridUpdate()
         {
-            dataGrid.ItemsSource = autoPartsBDEntities.Заказ.Where(x => x.Id_Клиент == pageClient.Id).ToList();
+            if(pageClient != null)
+                dataGrid.ItemsSource = autoPartsBDEntities.Заказ.Where(x => x.Id_Клиент == pageClient.Id).ToList();
+            else
+                dataGrid.ItemsSource = autoPartsBDEntities.Заказ.ToList();
 
         }
-
-        private void Button_Click_2(object sender, RoutedEventArgs e)
+        private void RefreshDG_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new Uri("./PagesAdmin/PageClient.xaml", UriKind.Relative));
+            DataGridUpdate();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Save_Click(object sender, RoutedEventArgs e)
         {
-            Заказ заказ = new Заказ()
+            try
             {
-                Id_Клиент = pageClient.Id,
-                Id_Сотрудник = int.Parse(N1.SelectedValue.ToString()),
-                Id_Запчасть = int.Parse(N2.SelectedValue.ToString()),
-            };
-            autoPartsBDEntities.Заказ.Add(заказ);
-            autoPartsBDEntities.SaveChanges();
+                autoPartsBDEntities.SaveChanges();
+                MessageBox.Show("Успешно");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             DataGridUpdate();
-            MessageBox.Show("Успешно");
         }
 
-        private void BthSelectStudent_Click_1(object sender, RoutedEventArgs e)
+        private void Add_Click(object sender, RoutedEventArgs e)
         {
-            Заказ заказ = (sender as Button).DataContext as Заказ;
-            autoPartsBDEntities.Заказ.Remove(заказ);
-            autoPartsBDEntities.SaveChanges();
-            DataGridUpdate();
+            if(pageClient == null)
+                this.NavigationService.Navigate(new PageAddZakaz());
+            else
+                this.NavigationService.Navigate(new PageAddZakaz(pageClient));
+        }
+
+        private void del_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid.SelectedItems.Count > 0)
+            {
+                Заказ zak = ((Заказ)dataGrid.SelectedItem);
+                
+                if ((zak.Запчасть.кол_во - (zak.кол_во)) > 0)
+                {
+                    zak.Запчасть.кол_во += -((int)zak.кол_во);
+                }
+
+                try
+                {
+                    autoPartsBDEntities.Заказ.Remove(zak);
+
+                    MessageBox.Show("Заказ удален!", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    autoPartsBDEntities.SaveChanges();
+                    DataGridUpdate();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
+            }
+            else
+            {
+                MessageBox.Show("В таблице нет данных", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void Otchet_Click(object sender, RoutedEventArgs e)
+        {
+            List<Заказ> zakList;
+            if (pageClient != null)
+                zakList = autoPartsBDEntities.Заказ.Where(x => x.Id_Клиент == pageClient.Id).ToList();
+            else
+                zakList = autoPartsBDEntities.Заказ.ToList();
+
+            DateTime dStart = new DateTime(DateTime.Now.Year,1,1);
+            DateTime dEnd = DateTime.Now;
+            zakList.Where(x => x.Дата_заказа > dStart && x.Дата_заказа < dEnd);
+
+            Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();
+            app.Visible = true;
+            app.WindowState = XlWindowState.xlMaximized;
+            Workbook wb = app.Workbooks.Add(XlWBATemplate.xlWBATWorksheet);
+            Worksheet ws = wb.Worksheets[1];
+
+            //форматирование текста
+            ws.StandardWidth = 9;
+
+            ws.Range["A2:F2"].Merge();
+            ws.Range["A2"].Value = "Отчёт по товарообороту";
+            ws.Range["A2"].HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            ws.Range["A2"].Font.Size = 16; ws.Range["A2"].Font.Bold = true;
+
+            if (pageClient != null)
+            {
+                ws.Range["A3"].Value = "Покупатель:"; ws.Range["B3:C3"].Merge();
+                ws.Range["B3"].Value = pageClient.ФИО;
+            }
+            ws.Range["A4"].Value = "Дата";
+            ws.Range["B4"].Value = "от:";
+            ws.Range["C4"].Value = dStart;
+            ws.Range["D4"].Value = "до:";
+            ws.Range["E4"].Value = dEnd;
+
+            ws.Range["A6:H6"].Font.Bold = true; ws.Range["A6:H6"].HorizontalAlignment = XlHAlign.xlHAlignCenter;
+            ws.Range["A6:H6"].RowHeight = 30; ws.Range["A6:H6"].WrapText = true;
+            ws.Range["A6"].Value = "Номер записи";
+            ws.Range["B6"].Value = "Дата";
+            ws.Range["C6"].Value = "Запчасть";
+            ws.Range["D6"].Value = "Сотрудник";
+            ws.Range["E6"].Value = "Клиент";
+            ws.Range["F6"].Value = "Кол-во";
+            ws.Range["G6"].Value = "Цена";
+            ws.Range["H6"].Value = "Сумма";
+            //
+
+
+
+            int numberStart = 7;
+            int numberEnd = numberStart;
+            foreach (Заказ t in zakList)
+            {
+
+                ws.Range["A" + numberEnd].Value = t.Id;
+                ws.Range["B" + numberEnd].Value = t.Дата_заказа;
+                ws.Range["C" + numberEnd].Value = t.Запчасть.Наименование;
+                ws.Range["D" + numberEnd].Value = t.Сотрудник.ФИО;
+                if(t.Клиент!=null)
+                ws.Range["E" + numberEnd].Value = t.Клиент.ФИО;
+                ws.Range["F" + numberEnd].Value = t.кол_во;
+                ws.Range["G" + numberEnd].Value = t.Запчасть.цена;
+                ws.Range["H" + numberEnd].Formula = "=F" + numberEnd + "*G" + numberEnd;
+
+                numberEnd++;
+            }
+            app.Calculation = XlCalculation.xlCalculationAutomatic;
+            ws.Calculate();
         }
     }
 }

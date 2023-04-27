@@ -29,11 +29,12 @@ namespace AutoParts.PagesAPP.PagesUserPanel
 
         private void BTNbackus_Click(object sender, RoutedEventArgs e)
         {
-            this.NavigationService.Navigate(new PageSklad());
+            this.NavigationService.GoBack();
         }
 
         private void BTNadduser_Click(object sender, RoutedEventArgs e)
         {
+            try { 
             Склад склад = new Склад()
             {
                 Наименование = N1.Text,
@@ -45,6 +46,11 @@ namespace AutoParts.PagesAPP.PagesUserPanel
             autoPartsBDEntities.Склад.Add(склад);
             autoPartsBDEntities.SaveChanges();
             MessageBox.Show("Успешно");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

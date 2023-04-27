@@ -45,8 +45,16 @@ namespace AutoParts.PagesAPP.PagesUserPanel
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            autoPartsBDEntities.SaveChanges();
-            DataGridUpdate();
+            try
+            {
+                autoPartsBDEntities.SaveChanges();
+                DataGridUpdate();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            MessageBox.Show("Успешно");
         }
 
         private void AddEmployee_Click(object sender, RoutedEventArgs e)
@@ -59,6 +67,7 @@ namespace AutoParts.PagesAPP.PagesUserPanel
         {
             if (dataGrid.SelectedItems.Count > 0)
             {
+                try { 
                 for (int i = 0; i < dataGrid.SelectedItems.Count; i++)
                 {
                     Склад склад = dataGrid.SelectedItems[i] as Склад;
@@ -68,6 +77,11 @@ namespace AutoParts.PagesAPP.PagesUserPanel
                 autoPartsBDEntities.SaveChanges();
                 DataGridUpdate();
             }
+                catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
             else
             {
                 MessageBox.Show("В таблице нет данных", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);

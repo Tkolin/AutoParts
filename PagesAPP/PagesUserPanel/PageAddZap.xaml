@@ -11,21 +11,22 @@
     <Grid Background="#FF5741AD">
 
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+
             <StackPanel Orientation="Horizontal">
                 <Label Margin="6,2,4,2" Content="Наименование:" FontSize="16" FontWeight="Bold"/>
-                <TextBox Width="224" Margin="150,2,4,2" FontSize="16" Height="32" Background="White" Name="N1"/>
+                <TextBox Width="224" Margin="150,2,4,2" FontSize="16" Height="32" Background="White" Name="N1" MaxLength="50"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Margin="4,2,4,2" Content="Марка автомобиля:" FontSize="16" FontWeight="Bold"/>
-                <TextBox Width="224" Margin="120,2,4,2" FontSize="16" Height="32" Background="White" x:Name="N2"/>
+                <TextBox Width="224" Margin="120,2,4,2" FontSize="16" Height="32" Background="White" x:Name="N2" MaxLength="50"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Margin="4,2,4,2" Content="Модель автомобиля:" FontSize="16" FontWeight="Bold"/>
-                <TextBox Width="224" Margin="109,2,4,2" FontSize="16" Height="32" Background="White" Name="N3"/>
+                <TextBox Width="224" Margin="109,2,4,2" FontSize="16" Height="32" Background="White" Name="N3" MaxLength="50"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Margin="4,2,4,2" Content="Производитель:" FontSize="16" FontWeight="Bold"/>
-                <TextBox Width="224" Margin="148,2,4,2" FontSize="16" Height="32" Background="White" Name="N4"/>
+                <TextBox Width="224" Margin="148,2,4,2" FontSize="16" Height="32" Background="White" Name="N4" MaxLength="50"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Label Margin="4,2,4,2" Content="Количество:" FontSize="16" FontWeight="Bold"/>

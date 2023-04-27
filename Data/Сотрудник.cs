@@ -23,12 +23,12 @@ namespace AutoParts.Data
         public int Id { get; set; }
         public string ФИО { get; set; }
         public string Телефон { get; set; }
-        public string Дата { get; set; }
+        public System.DateTime Дата { get; set; }
         public string Паспорт { get; set; }
         public int Id_Пол { get; set; }
     
+        public virtual Пол Пол { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Заказ> Заказ { get; set; }
-        public virtual Пол Пол { get; set; }
     }
 }

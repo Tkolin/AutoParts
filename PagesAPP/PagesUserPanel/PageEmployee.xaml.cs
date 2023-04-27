@@ -33,6 +33,7 @@ namespace AutoParts.PagesAPP.PagesUserPanel
 
         private void DataGridUpdate()
         {
+          
             dataGrid.ItemsSource = autoPartsBDEntities.Сотрудник.ToList();
         }
 
@@ -45,13 +46,17 @@ namespace AutoParts.PagesAPP.PagesUserPanel
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            autoPartsBDEntities.SaveChanges();
+            try
+            {
+                autoPartsBDEntities.SaveChanges();
+                MessageBox.Show("Успешно");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
             DataGridUpdate();
-        }
 
-        private void AddEmployee_Click(object sender, RoutedEventArgs e)
-        {
-           
         }
 
         private void AddEmployee_Click_1(object sender, RoutedEventArgs e)
@@ -59,15 +64,11 @@ namespace AutoParts.PagesAPP.PagesUserPanel
             this.NavigationService.Navigate(new PageAddEmployee());
         }
 
-        private void Del_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
             if (dataGrid.SelectedItems.Count > 0)
             {
+                try { 
                 for (int i = 0; i < dataGrid.SelectedItems.Count; i++)
                 {
                     Сотрудник сотрудник = dataGrid.SelectedItems[i] as Сотрудник;
@@ -77,6 +78,11 @@ namespace AutoParts.PagesAPP.PagesUserPanel
                 autoPartsBDEntities.SaveChanges();
                 DataGridUpdate();
             }
+                catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
             else
             {
                 MessageBox.Show("В таблице нет данных", "Уведомление", MessageBoxButton.OK, MessageBoxImage.Error);
