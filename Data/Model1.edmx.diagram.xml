@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="00b7bac461c1476db1fa87c30f65e34a" Name="Diagram1">
+        <EntityTypeShape EntityType="AutoPartsBDModel.Role" Width="1.5" PointX="5.75" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoPartsBDModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoPartsBDModel.User" Width="1.5" PointX="8" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoPartsBDModel.Заказ" Width="1.5" PointX="5.25" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoPartsBDModel.Запчасть" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoPartsBDModel.Клиент" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoPartsBDModel.Пол" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoPartsBDModel.Склад" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="AutoPartsBDModel.Сотрудник" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <AssociationConnector Association="AutoPartsBDModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoPartsBDModel.FK_Заказ_Запчасть" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoPartsBDModel.FK_Заказ_Клиент" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoPartsBDModel.FK_Заказ_Сотрудник" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoPartsBDModel.FK_Запчасть_Склад" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoPartsBDModel.FK_Клиент_Пол" ManuallyRouted="false" />
+        <AssociationConnector Association="AutoPartsBDModel.FK_Сотрудник_Пол" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

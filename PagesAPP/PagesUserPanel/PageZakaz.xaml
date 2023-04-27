@@ -1,0 +1,42 @@
+﻿<Page x:Class="AutoParts.PagesAPP.PagesUserPanel.PageZakaz"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoParts.PagesAPP.PagesUserPanel"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="PageZakaz">
+
+    <DockPanel Background="#FF5741AD">
+        <WrapPanel DockPanel.Dock="Top" Background="#FF5741AD">
+            
+            <Label Content="Заказ:" FontSize="15" FontWeight="Bold"  VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
+            <Label Content="Сотрудник:" FontSize="15"   VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
+            <ComboBox BorderThickness="0" VerticalAlignment="Center" Width="120" x:Name="N1"/>
+            <Label Content="Запчасть:" FontSize="15"   VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White"/>
+            <ComboBox BorderThickness="0" VerticalAlignment="Center" Width="120" x:Name="N2"/>
+            <Button BorderThickness="0" Margin="15" Content="Добавить" Width="90" Height="30"  FontSize="15" FontWeight="Bold"  Foreground="White" Background="#FF2E1E6B" Click="Button_Click"   />
+
+        </WrapPanel>
+        <DataGrid x:Name="dataGrid" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}" Width="*" />
+                <DataGridTextColumn Header="Запчасть" Binding="{Binding Запчасть.Наименование}" Width="*" />
+                <DataGridTextColumn Header="Сотрудник" Binding="{Binding Сотрудник.ФИО}" Width="*" />
+                <DataGridTemplateColumn Header="Удалить"  Width="*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Background="Azure"
+                                    Name="BthSelectStudent"
+                                    Click="BthSelectStudent_Click_1"
+                                    Content="Удалить"
+                                    />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </DockPanel>
+</Page>

@@ -1,0 +1,31 @@
+﻿<Page x:Class="AutoParts.PagesAPP.AdminPanel"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoParts.PagesAPP"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdminPanel">
+
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Top" Background="#FF2E1E6B" Height="45" VerticalAlignment="Top" >
+
+            <Label Content="" HorizontalAlignment="Center"  FontSize="25" Margin="15 0 0 0"  FontWeight="Black"   Foreground="White"/>
+        </StackPanel>
+        <Grid Background="#FF2E1E6B" DockPanel.Dock="Left" Width="156">
+            <WrapPanel  />
+            <Button Content="Сотрудник"  HorizontalAlignment="Center" Margin="18,29,18,326" Width="120" FontSize="12" Height="50" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click_4"  />
+            <Button Content="Клиент"  HorizontalAlignment="Left" Margin="18,94,0,261" Width="120" Height="50" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click"  />
+            <Button Content="Склад" HorizontalAlignment="Center" Margin="18,160,18,197" Width="120" Height="50" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD"  Click="Button_Click_1"/>
+            <Button Content="Товар" HorizontalAlignment="Center" Margin="18,230,18,129" Width="120" Height="50" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click_2" />
+            <Button Content="Выход" HorizontalAlignment="Center" Margin="18,303,18,52" Width="120" Height="50" FontSize="12" FontWeight="Bold"  Foreground="White" Background="#FF5741AD" Click="Button_Click_3" />
+
+        </Grid>
+
+
+
+
+        <Frame x:Name="frame" Source="./PagesUserPanel/PageClient.xaml"/>
+    </DockPanel>
+</Page>
