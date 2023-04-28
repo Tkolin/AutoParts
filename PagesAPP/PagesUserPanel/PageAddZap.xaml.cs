@@ -32,6 +32,10 @@ namespace AutoParts.PagesAPP.PagesUserPanel
 
         public PageAddZap()
         {
+            InitializeComponent();
+            N7.ItemsSource = autoPartsBDEntities.Склад.ToList();
+            N7.DisplayMemberPath = "Наименование";
+            N7.SelectedValuePath = "Id";
         }
 
         private void BTNbackus_Click(object sender, RoutedEventArgs e)
@@ -41,6 +45,12 @@ namespace AutoParts.PagesAPP.PagesUserPanel
 
         private void BTNadduser_Click(object sender, RoutedEventArgs e)
         {
+            if (N1.Text.Length < 0 || N2.Text.Length < 0 || N3.Text.Length < 0 || N4.Text.Length < 0 ||
+                N5.Text.Length < 0 || N6.Text.Length < 0 || N7.SelectedItem == null)
+            {
+                MessageBox.Show("Не все данные были заполнены!");
+                return;
+            }
             try { 
             Запчасть запчасть = new Запчасть()
             {
