@@ -109,5 +109,23 @@ namespace AutoParts.PagesAPP.PagesUserPanel
                 dataGrid.ItemsSource = autoPartsBDEntities.Клиент.Where(x => x.ФИО.ToLower().Contains(str.ToLower())).ToList();
             }
         }
+
+        private void chek_Click(object sender, RoutedEventArgs e)
+        {
+            if (dataGrid.SelectedItem != null && Dpicer.SelectedDate != null )
+            {
+
+                Клиент клиент = dataGrid.SelectedItem as Клиент;
+                DateTime date = Dpicer.SelectedDate.Value;
+
+                List<Заказ> заказs = autoPartsBDEntities.Заказ.
+                    Where(x => x.Id_Клиент == клиент.Id &&
+                    ((DateTime)x.Дата_заказа) == date
+                    ).ToList();
+                
+                if(заказs.Count > 0)
+                NavigationService.Navigate(new ChekPage(заказs)) ;
+            }
+        }
     }
 }

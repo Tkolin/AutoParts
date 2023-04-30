@@ -35,6 +35,7 @@ namespace AutoParts.PagesAPP.PagesUserPanel
         {
             InitializeComponent();
             DGClient.Visibility = Visibility.Visible;
+            new DateTime(DateTime.Now.Year, 1, 1);
             DataGridUpdate();
         }
         private void DataGridUpdate()
@@ -110,8 +111,23 @@ namespace AutoParts.PagesAPP.PagesUserPanel
             else
                 zakList = autoPartsBDEntities.Заказ.ToList();
 
-            DateTime dStart = new DateTime(DateTime.Now.Year,1,1);
-            DateTime dEnd = DateTime.Now;
+            DateTime dStart, dEnd;
+
+            if (DpicerStart.SelectedDate != null && DpicerEnd.SelectedDate != null &&
+                DpicerStart.SelectedDate.Value >= DpicerEnd.SelectedDate.Value)
+            {
+                dStart = DpicerStart.SelectedDate.Value;
+                dEnd = DpicerEnd.SelectedDate.Value;
+            }
+            else
+            {
+                DpicerEnd.SelectedDate = null;
+                DpicerStart.SelectedDate = null;
+                MessageBox.Show("Установите верный промежуток времени!","Не корректная дата!");
+                return;
+            }
+
+    
             zakList.Where(x => x.Дата_заказа > dStart && x.Дата_заказа < dEnd);
 
             Microsoft.Office.Interop.Excel.Application app = new Microsoft.Office.Interop.Excel.Application();

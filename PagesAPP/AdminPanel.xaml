@@ -26,7 +26,10 @@
 
 
 
-
-        <Frame x:Name="frame" Source="./PagesUserPanel/PageClient.xaml"/>
+        <ScrollViewer>
+            <Frame x:Name="frame" Source="./PagesUserPanel/PageClient.xaml" 
+               ScrollViewer.VerticalScrollBarVisibility="Auto"
+                ScrollViewer.CanContentScroll="True" />
+        </ScrollViewer>
     </DockPanel>
 </Page>

@@ -1,0 +1,87 @@
+﻿<Page x:Class="AutoParts.PagesAPP.PagesUserPanel.ChekPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AutoParts.PagesAPP.PagesUserPanel"
+      mc:Ignorable="d" d:DesignWidth="826"
+      Title="ChekPage" Height="1169" Loaded="Page_Loaded">
+    <Grid Background="White" x:Name="chekGrid">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Top" >
+            <Image Source="/IMG/LogoIMG.jpg" Width="250" Height="75" Margin="10"/>
+            <Label Content="Чек"  Foreground="Black" FontSize="60" FontWeight="Bold" VerticalContentAlignment="Center"/>
+            <Label Content="№" x:Name="T1" Foreground="Black" FontSize="30" FontWeight="Bold" VerticalContentAlignment="Center"/>
+
+        </StackPanel>
+
+
+        <StackPanel Margin="15,100,15,15" Orientation="Vertical">
+            <StackPanel Orientation="Horizontal" >
+                <Border BorderBrush="Black" CornerRadius="2,2,2,2" BorderThickness="1,1,1,1" Margin="10,0,10,10" Width="770">
+                    <StackPanel Orientation="Horizontal" Margin="10">
+                        <StackPanel  Width="400">
+                            <Label Content="Клиент №" x:Name="N1" Foreground="Black" FontSize="24" FontWeight="Bold"/>
+                            <Label Content="Дата рождения: " x:Name="N3" Foreground="Black" FontSize="12" />
+                            <Label Content="ФИО: " x:Name="N2" Foreground="Black" FontSize="12" />
+                            <Label Content="Телефон: " x:Name="N4" Foreground="Black" FontSize="12" />
+                        </StackPanel>
+                        <StackPanel Width="350" Margin="0,45,0,0">
+                            <Label Content="Паспорт: " x:Name="N5" Foreground="Black" FontSize="12" />
+                            <Label Content="Пол: " x:Name="N6" Foreground="Black" FontSize="12" />
+                        </StackPanel>
+                    </StackPanel>
+                </Border>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+            <Border BorderBrush="Black" CornerRadius="2,2,2,2" BorderThickness="1,1,1,1" Margin="10,0,10,10" Width="770">
+                <StackPanel Orientation="Horizontal" Margin="10">
+                    <StackPanel Width="400">
+                        <Label Content="Данные заказа" x:Name="T2" Foreground="Black" FontSize="24" FontWeight="Bold"/>
+                            <Label Content="Дата заказа: " x:Name="T3" Foreground="Black" FontSize="12" />
+                            <Label Content="ФИО сотрудника: " x:Name="T6" Foreground="Black" FontSize="12" />
+                        </StackPanel>
+                    <StackPanel Width="350" Margin="0,45,0,0">
+                        <Label Content="Кол-во позиций в чеке: " x:Name="T4" Foreground="Black" FontSize="12" />
+                            <Label Content="Кол-во предметов в чеке: " x:Name="T5" Foreground="Black" FontSize="12" />
+                        </StackPanel>
+                </StackPanel>
+            </Border>
+            </StackPanel>
+            <Label Content="Cодержание заказа:" Foreground="Black" FontSize="24" FontWeight="Bold" Margin="20,0,0,0"/>
+
+            <StackPanel Orientation="Horizontal" Width="770">
+
+                <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" IsEnabled="False" Margin="10,0,10,10" Width="750" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id" Binding="{Binding Запчасть.Id}" Width="1*" />
+                    <DataGridTextColumn Header="Наименование" Binding="{Binding Запчасть.Наименование}" Width="4*" />
+                    <DataGridTextColumn Header="Марка авто" Binding="{Binding Запчасть.Марка_авто}" Width="3*" />
+                    <DataGridTextColumn Header="Модель авто" Binding="{Binding Запчасть.Модель_авто}" Width="3*" />
+                    <DataGridTextColumn Header="Производитель" Binding="{Binding Запчасть.Производитель}" Width="3*" />
+                    <DataGridTextColumn Header="Склад" Binding="{Binding Запчасть.Склад.Наименование}" Width="3*" />
+                    <DataGridTextColumn Header="Цена" Binding="{Binding Запчасть.цена}" Width="2*" />
+                    <DataGridTextColumn Header="Кол-во" Binding="{Binding кол_во}" Width="2*" />
+                    <DataGridTextColumn Header="Сумма" Binding="{Binding Сумма}" Width="2*" />
+                </DataGrid.Columns>
+            </DataGrid>
+            </StackPanel>
+            <!--<Border BorderBrush="Black" CornerRadius="2,2,2,2" BorderThickness="1,1,1,1" Margin="10,10,10,10" Width="770">
+                <StackPanel>
+                    <Label Content="Запчасть №" x:Name="Z1" Foreground="Black" FontSize="24" FontWeight="Bold"/>
+                    <Label Content="Наименование: " x:Name="Z2" Foreground="Black" FontSize="12" />
+                    <Label Content="Марка: " x:Name="Z3" Foreground="Black" FontSize="12" />
+                    <Label Content="Модель: " x:Name="Z4" Foreground="Black" FontSize="12" />
+                    <Label Content="Производитель: " x:Name="Z5" Foreground="Black" FontSize="12" />
+                    <Label Content="Цена: " x:Name="Z6" Foreground="Black" FontSize="12" />
+                </StackPanel>
+            </Border>-->
+        </StackPanel>
+        <StackPanel VerticalAlignment="Bottom" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Label Content="Сумма к оплате: " x:Name="T7" Foreground="Black" FontSize="20" FontWeight="Black" />
+        </StackPanel>
+        <StackPanel VerticalAlignment="Bottom" Orientation="Horizontal">
+            <Button Content="Назад" x:Name="backBtn" Foreground="Gold" Background="#FF2E1E6B" FontSize="16" FontWeight="Bold" Width="100" Margin="0,0,15,0" Click="backBtn_Click" />
+            <Button Content="Печать" x:Name="saveBtn" Foreground="Gold" Background="#FF2E1E6B" FontSize="16" FontWeight="Bold" Width="100" Click="saveBtn_Click" />
+        </StackPanel>
+    </Grid>
+</Page>
